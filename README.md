@@ -26,16 +26,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Ensure the `.env.local` file has required environment variables:
 
+
+```
+ DATABASE_URL="file:./db.sqlite"
+```
+OR
 ```
 DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/blitz-to-do-list
 ```
-
-Ensure the `.env.test.local` file has required environment variables:
-
-```
-DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/blitz-to-do-list_test
-```
-
 
 Blitz comes with a test setup using [Vitest](https://vitest.dev/) and [react-testing-library](https://testing-library.com/).
 
