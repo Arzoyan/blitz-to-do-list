@@ -1,7 +1,5 @@
 "use client"
 import React from "react"
-export const containerStyle = "h-12 mb-5 flex items-center shadow-md px-4 focus:ring outline-none"
-export const textStyle = "relative text-md color-gray-50"
 
 type TaskType = {
   completed: boolean

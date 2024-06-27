@@ -1,5 +1,4 @@
 import React from "react"
-import { containerStyle } from "./Task"
 
 type InputProps = {
   value: string
