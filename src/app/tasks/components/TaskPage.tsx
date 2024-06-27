@@ -70,37 +70,47 @@ const TaskPage: BlitzPage = () => {
         />
       </div>
       <ul className="divide-y divide-gray-200 px-4">
-        {tasks.map((item) => {
-          return item.id === itemId ? (
-            <AddTask
-              placeholder={"Edit Task"}
-              isLoading={isLoading}
-              value={editedTaskLabel}
-              onChange={setEditedTaskLabel}
-              onPressEnter={() => {
-                if (!editedTaskLabel.trim()) {
-                  return
-                }
-                handelUpdateTask({ id: item.id, label: editedTaskLabel })
-              }}
-            />
-          ) : (
-            <Task
-              key={item.id}
-              task={item}
-              onClick={() => {
-                setEditedTaskLabel(item.label)
-                setItemId(item.id)
-              }}
-              onDelete={() => {
-                handelDeleteTask(item.id)
-              }}
-              onCompleted={() => {
-                handelUpdateTask({ id: item.id, completed: !item.completed })
-              }}
-            />
-          )
-        })}
+        {!tasks.length ? (
+          <li>
+            <div className="px-4 py-5 sm:px-6">
+              <div className="flex items-center justify-between">
+                <h3 className={`text-lg leading-6 font-medium "ext-red-500 `}>No Data</h3>
+              </div>
+            </div>
+          </li>
+        ) : (
+          tasks.map((item) => {
+            return item.id === itemId ? (
+              <AddTask
+                placeholder={"Edit Task"}
+                isLoading={isLoading}
+                value={editedTaskLabel}
+                onChange={setEditedTaskLabel}
+                onPressEnter={() => {
+                  if (!editedTaskLabel.trim()) {
+                    return
+                  }
+                  handelUpdateTask({ id: item.id, label: editedTaskLabel })
+                }}
+              />
+            ) : (
+              <Task
+                key={item.id}
+                task={item}
+                onClick={() => {
+                  setEditedTaskLabel(item.label)
+                  setItemId(item.id)
+                }}
+                onDelete={() => {
+                  handelDeleteTask(item.id)
+                }}
+                onCompleted={() => {
+                  handelUpdateTask({ id: item.id, completed: !item.completed })
+                }}
+              />
+            )
+          })
+        )}
       </ul>
     </>
   )
