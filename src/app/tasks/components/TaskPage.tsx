@@ -2,13 +2,12 @@
 import { invalidateQuery, useMutation, useQuery } from "@blitzjs/rpc"
 import { BlitzPage } from "@blitzjs/auth"
 import insertTask from "../mutations/insertTask"
-// import { updateTask } from "../mutations/insertTask"
 import getTasks from "../queries/getTasks"
 import AddTask from "./AddTask"
 
 import { useState } from "react"
 import Task from "./Task"
-import updateTask from "../mutations/`"
+import updateTask from "../mutations/updateTask"
 import deleteTask from "../mutations/deleteTask"
 
 interface Task {
