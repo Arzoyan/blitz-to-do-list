@@ -49,16 +49,24 @@ const TaskPage: BlitzPage = () => {
     await deleteTaskMutation(id)
   }
 
+  const handelAddTask = async (data: { label: string }) => {
+    await insertTaskMutation(data)
+    setNewTaskLabel("")
+  }
+
   return (
     <>
       <div>
         <AddTask
+          placeholder={"Add New Task"}
           isLoading={isLoading}
           value={newTaskLabel}
           onChange={setNewTaskLabel}
-          onPressEnter={async () => {
-            await insertTaskMutation({ label: newTaskLabel })
-            setNewTaskLabel("")
+          onPressEnter={() => {
+            if (!newTaskLabel.trim()) {
+              return
+            }
+            handelAddTask({ label: newTaskLabel })
           }}
         />
       </div>
@@ -66,11 +74,15 @@ const TaskPage: BlitzPage = () => {
         {tasks.map((item) => {
           return item.id === itemId ? (
             <AddTask
+              placeholder={"Edit Task"}
               isLoading={isLoading}
               value={editedTaskLabel}
               onChange={setEditedTaskLabel}
-              onPressEnter={async () => {
-                await handelUpdateTask({ id: item.id, label: editedTaskLabel })
+              onPressEnter={() => {
+                if (!editedTaskLabel.trim()) {
+                  return
+                }
+                handelUpdateTask({ id: item.id, label: editedTaskLabel })
               }}
             />
           ) : (

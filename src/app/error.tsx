@@ -13,8 +13,8 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
           <h2 className="text-2xl font-bold text-red-600 mb-4">{error.name}</h2>
           <p className="text-gray-600 mb-4">{error.message}</p>
         </div>
+        <button onClick={() => reset()}>Try again</button>
       </div>
-      <button onClick={() => reset()}>Try again</button>
     </div>
   )
 }

@@ -2,18 +2,19 @@ import React from "react"
 
 type InputProps = {
   value: string
+  placeholder: string
   onChange: (value: string) => void
   onPressEnter: () => void
   isLoading?: boolean
 }
 
-const AddTask: React.FC<InputProps> = ({ value, onChange, onPressEnter }) => {
+const AddTask: React.FC<InputProps> = ({ value, onChange, onPressEnter, placeholder }) => {
   return (
     <div className="flex items-center border-b-2 border-teal-500 py-2">
       <input
         className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
         style={{ WebkitAppearance: "textfield" }}
-        placeholder="add new task"
+        placeholder={placeholder}
         type="search"
         autoComplete="off"
         value={value}
