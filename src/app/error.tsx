@@ -3,21 +3,18 @@ import React, { useEffect } from "react"
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
 
   return (
     <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="max-w-md bg-white p-8 rounded shadow-md">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">{error.name}</h2>
+          <p className="text-gray-600 mb-4">{error.message}</p>
+        </div>
+      </div>
+      <button onClick={() => reset()}>Try again</button>
     </div>
   )
 }

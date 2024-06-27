@@ -1,7 +1,6 @@
 "use client"
 import React from "react"
-export const containerStyle =
-  "h-12 mb-5 flex items-center rounded-full bg-gray-700 shadow-md px-4 focus:ring outline-none"
+export const containerStyle = "h-12 mb-5 flex items-center shadow-md px-4 focus:ring outline-none"
 export const textStyle = "relative text-md color-gray-50"
 
 type TaskType = {
@@ -16,39 +15,57 @@ const Task: React.FC<{
   onCompleted: () => void
 }> = ({ task, onClick, onDelete, onCompleted }) => {
   return (
-    <div
-      className={`${containerStyle} cursor-pointer`}
-      role="checkbox"
-      aria-checked={task.completed}
-      tabIndex={0}
-    >
-      <div
-        className={` rounded-full w-5 h-5 mr-4 transition-all flex items-center justify-center bg-gray-900 cursor-pointer
-                    ${task.completed ? "bg-transparent" : ""}`}
-      />
+    <li>
+      <div className="px-4 py-5 sm:px-6">
+        <div className="flex items-center justify-between">
+          <h3
+            className={`text-lg leading-6 font-medium ${
+              task.completed ? "text-green-600" : "text-gray-900"
+            }`}
+          >
+            {task.label}
+          </h3>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex ">
+            <input
+              id="todo1"
+              name="todo1"
+              type="checkbox"
+              onClick={onCompleted}
+              checked={task.completed}
+              className=" mr-2.5 text-teal-600 focus:ring-teal-500 border-gray-300 rounded cursor-pointer"
+            />
+            <h4
+              className={`text-lg leading-6 font-medium ${
+                task.completed ? "text-green-600" : "text-gray-900"
+              }`}
+            >
+              {task.completed ? "Done" : "Pending"}
+            </h4>
+          </div>
 
-      <div className={textStyle} onClick={onClick}>
-        {task.label}
-        <div
-          className={`absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform bg-blue-400
-                       ${task.completed ? "scale-x-1" : "scale-x-0"}`}
-        />
+          <div className="flex justify-end">
+            <div className="mt-4 mr-2.5">
+              <span
+                className="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer"
+                onClick={onClick}
+              >
+                Edit
+              </span>
+            </div>
+            <div className="mt-4 ">
+              <span
+                className="font-medium text-red-600 hover:text-indigo-500 cursor-pointer"
+                onClick={onDelete}
+              >
+                Delete
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className={textStyle} onClick={onDelete}>
-        X
-        <div
-          className={`absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform bg-blue-400
-                       ${task.completed ? "scale-x-1" : "scale-x-0"}`}
-        />
-      </div>
-      <div className={"underline"} onClick={onCompleted}>
-        completed::: {`${task.completed}`}
-        <div
-          className={`absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform bg-blue-400
-                       ${task.completed ? "scale-x-1" : "scale-x-0"}`}
-        />
-      </div>
-    </div>
+    </li>
   )
 }
 

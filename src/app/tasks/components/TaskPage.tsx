@@ -51,52 +51,46 @@ const TaskPage: BlitzPage = () => {
 
   return (
     <>
-      <div />
       <div>
-        <main>
-          <div>
-            <div>
-              <AddTask
-                isLoading={isLoading}
-                value={newTaskLabel}
-                onChange={setNewTaskLabel}
-                onPressEnter={async () => {
-                  await insertTaskMutation({ label: newTaskLabel })
-                  setNewTaskLabel("")
-                }}
-              />
-            </div>
-            {tasks.length &&
-              tasks.map((item) => {
-                return itemId === item.id ? (
-                  <AddTask
-                    isLoading={isLoading}
-                    value={editedTaskLabel}
-                    onChange={setEditedTaskLabel}
-                    onPressEnter={async () => {
-                      await handelUpdateTask({ id: item.id, label: editedTaskLabel })
-                    }}
-                  />
-                ) : (
-                  <Task
-                    key={item.id}
-                    task={item}
-                    onClick={() => {
-                      setEditedTaskLabel(item.label)
-                      setItemId(item.id)
-                    }}
-                    onDelete={() => {
-                      handelDeleteTask(item.id)
-                    }}
-                    onCompleted={() => {
-                      handelUpdateTask({ id: item.id, completed: !item.completed })
-                    }}
-                  />
-                )
-              })}
-          </div>
-        </main>
+        <AddTask
+          isLoading={isLoading}
+          value={newTaskLabel}
+          onChange={setNewTaskLabel}
+          onPressEnter={async () => {
+            await insertTaskMutation({ label: newTaskLabel })
+            setNewTaskLabel("")
+          }}
+        />
       </div>
+      <ul className="divide-y divide-gray-200 px-4">
+        {tasks.map((item) => {
+          return item.id === itemId ? (
+            <AddTask
+              isLoading={isLoading}
+              value={editedTaskLabel}
+              onChange={setEditedTaskLabel}
+              onPressEnter={async () => {
+                await handelUpdateTask({ id: item.id, label: editedTaskLabel })
+              }}
+            />
+          ) : (
+            <Task
+              key={item.id}
+              task={item}
+              onClick={() => {
+                setEditedTaskLabel(item.label)
+                setItemId(item.id)
+              }}
+              onDelete={() => {
+                handelDeleteTask(item.id)
+              }}
+              onCompleted={() => {
+                handelUpdateTask({ id: item.id, completed: !item.completed })
+              }}
+            />
+          )
+        })}
+      </ul>
     </>
   )
 }
