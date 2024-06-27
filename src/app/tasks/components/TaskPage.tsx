@@ -8,7 +8,7 @@ import AddTask from "./AddTask"
 
 import { useState } from "react"
 import Task from "./Task"
-import updateTask from "../mutations/updateTask"
+import updateTask from "../mutations/`"
 import deleteTask from "../mutations/deleteTask"
 
 interface Task {
