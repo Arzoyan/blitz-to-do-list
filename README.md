@@ -4,11 +4,6 @@ This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
 
 # ****TO DO LIST****
 
-## Demo
-
-**Web Page**
-https://cinema-mern-stack-app-4.onrender.com/
-
 ## Run Locally
 
 Clone the project
